@@ -1,5 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Bree+Serif|Lora');
+@import url('https://fonts.googleapis.com/css?family=Lora|Marcellus+SC|Milonga');
 .center {text-align: center; width: auto;}
+.left {text-align:left;}
 table {table-layout: fixed; width: auto;}
 p, h4 {font-family: 'Lora', sans-serif;}
-h1, h2, h3 {font-family: 'Bree Serif', serif;}
+h1 {font-family: 'Milonga', serif;}
+h2, h3 {font-family: 'Marcellus SC', serif;}
+.underline {text-decoration: underline;}
+a:link {text-align:center; font-family: 'Marcellus SC', serif; font-size:130%}
+.navbar-nav {background-color: rgb(106, 12, 106); width: 100%;}
+.caption {text-align: center; color:rgba(210, 200, 200, 0.66); font-size: 75%}
+.margintop{margin-top:2.5%}
+.marginsmall{margin-top:1%}
+.marginmedium{margin-top:10%}
