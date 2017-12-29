@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif|Lora');
+.center {text-align: center; width: auto;}
+table {table-layout: fixed; width: auto;}
+p, h4 {font-family: 'Lora', sans-serif;}
+h1, h2, h3 {font-family: 'Bree Serif', serif;}
