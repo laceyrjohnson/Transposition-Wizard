@@ -39,38 +39,46 @@ $(document).ready(function(){
               new Pitch (120,"C10"), new Pitch (121,"C#/Db10"), new Pitch (122,"D10"), new Pitch (123,"D#/Eb10"), new Pitch (124,"E10"), new Pitch (125,"F10"), new Pitch (126,"F#/Gb10"), new Pitch (127,"G10"),];
   
     function Instrument (name, lowestpitch, highestpitch, offset)
-      {this.name = name;
+      {
+          this.name = name;
       this.lowestpitch = lowestpitch;
       this.highestpitch = highestpitch;
-      this.offset = offset;}
+      this.offset = offset;
+    }
   
     function Pitch (number, name)
-        {this.name = name;
-        this.number = number;}
-
-    function CalculateRange()
         {
-            var direction = $("#TransposerSelect").val();
-            var direction2 = $("#InstrumentSelect").val();
+            this.name = name;
+        this.number = number;
     }
 
     function PitchList ()
     { 
         var direction = $("#TransposerSelect").val();
         var SelectedInstrumentName = $("#InstrumentSelect").val();
+        console.log (SelectedInstrumentName)
             for (index = 0; index <instruments.length; ++index)
             {
-                if (instruments [index].name = SelectedInstrumentName) {
-                    var index;
-                    $('#PitchSelect').empty()    
-                for (index2 = 0; index2 < pitch.length; ++index2) {
-                    $('#PitchSelect').append('<option value="" selected="selected">'+ pitch [index2].name +'</option>');
-            }        
-                }   
-            }
+                if (instruments[index].name == SelectedInstrumentName) 
+                {
+                    $('#PitchSelect').empty();  
+                    for (index2 = 0; index2 < pitch.length; ++index2) 
+                    {
+                        console.log(instruments[index].name);
+                        console.log(instruments[index].lowestpitch);
+                        if (pitch[index2].number>=instruments[index].lowestpitch && pitch[index2].number<=instruments[index].highestpitch)
+                        {
+                        $('#PitchSelect').append('<option value="" selected="selected">'
+                            + pitch [index2].name +'</option>');
+                        }
+                    }  
+                }      
+            }   
+    }
+        
  
         //computer reads instrument range
         //computer uses pitches above to make a list of pitches within range
         //computer puts list of pitches in a dropdown on the screen
-    }
+
 
