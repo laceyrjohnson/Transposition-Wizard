@@ -6,23 +6,24 @@
 $(document).ready(function(){
     $("#TransposerSelect").change(function(){PitchList();});
     $("#InstrumentSelect").change(function(){PitchList();});
+    $("#Transpose").click(function(){Transpose();});
 });
 
     instruments =   [new Instrument("Concert Pitch",22,96,0), 
-                    new Instrument("Piccolo",62,96,12), 
-                    new Instrument("English Horn",40,72,-7), 
-                    new Instrument("Contrabassoon",34,70,12), 
-                    new Instrument("Clarinet",38,82,-2),
-                    new Instrument("Bass Clarinet",25,70,-14), 
-                    new Instrument("Alto Sax",37,68,-9), 
-                    new Instrument("Tenor Sax",32,63,-14), 
-                    new Instrument("Bari Sax",25,56,-21), 
-                    new Instrument("Trumpet",40,70,-2), 
-                    new Instrument("F Horn",23,65,-7), 
-                    new Instrument("Baritone T.C.",28,58,-14),
-                    new Instrument("Double Bass",36,72,12),
-                    new Instrument("Glockenspiel (Bells)",67,96,24),
-                    new Instrument("Xylophone",53,96,12),]
+                    new Instrument("Piccolo",62,96,-12), 
+                    new Instrument("English Horn",40,72,7), 
+                    new Instrument("Contrabassoon",34,70,-12), 
+                    new Instrument("Clarinet",38,82,2),
+                    new Instrument("Bass Clarinet",25,70,14), 
+                    new Instrument("Alto Sax",37,68,9), 
+                    new Instrument("Tenor Sax",32,63,14), 
+                    new Instrument("Bari Sax",25,56,21), 
+                    new Instrument("Trumpet",40,70,2), 
+                    new Instrument("F Horn",23,65,7), 
+                    new Instrument("Baritone T.C.",28,58,14),
+                    new Instrument("Double Bass",36,72,-12),
+                    new Instrument("Glockenspiel (Bells)",67,96,-24),
+                    new Instrument("Xylophone",53,96,-12),]
 
     selectedinstrument = null;
     //http://www.electronics.dit.ie/staff/tscarff/Music_technology/midi/midi_note_numbers_for_octaves.htm
@@ -52,33 +53,64 @@ $(document).ready(function(){
         this.number = number;
     }
 
-    function PitchList ()
+    function PitchList ()//generates list of pitches
     { 
-        var direction = $("#TransposerSelect").val();
-        var SelectedInstrumentName = $("#InstrumentSelect").val();
-        console.log (SelectedInstrumentName)
-            for (index = 0; index <instruments.length; ++index)
+        var direction = $("#TransposerSelect").val(); //reads which way to transpose
+        var SelectedInstrumentName = $("#InstrumentSelect").val();//reads which instrument to transpose for
+            for (index = 0; index <instruments.length; ++index)//reads through the list of instruments
             {
-                if (instruments[index].name == SelectedInstrumentName) 
+                if (instruments[index].name == SelectedInstrumentName)//selects the instrument that matches html dropdown
                 {
                     $('#PitchSelect').empty();  
-                    for (index2 = 0; index2 < pitch.length; ++index2) 
+                    for (index2 = 0; index2 < pitch.length; ++index2) //reads the pitch list
                     {
-                        console.log(instruments[index].name);
-                        console.log(instruments[index].lowestpitch);
-                        if (pitch[index2].number>=instruments[index].lowestpitch && pitch[index2].number<=instruments[index].highestpitch)
+                        if (pitch[index2].number>=instruments[index].lowestpitch && pitch[index2].number<=instruments[index].highestpitch)//sets the displayable range of pitches
                         {
-                        $('#PitchSelect').append('<option value="" selected="selected">'
-                            + pitch [index2].name +'</option>');
-                        }
-                    }  
-                }      
-            }   
-    }
+                            var transposer=0;
+                            if (direction == 2) {transposer= instruments[index].offset}
+                        
+                            $('#PitchSelect').append('<option value="'+ pitch[index2+transposer].number +'" selected="selected">' + pitch [index2+transposer].name +'</option>'); //displays selective pitch list on website
+                           
+                        }}}}}
+
+    function Transpose ()
+    {
+        var direction = $("#TransposerSelect").val();
+        var SelectedInstrumentName = $("#InstrumentSelect").val();
+        for (index = 0; index <instruments.length; ++index)//reads through the list of instruments
+        {
+            if (instruments[index].name == SelectedInstrumentName)//selects the instrument that matches html dropdown
+            { 
+                for (index2 = 0; index2 < pitch.length; ++index2) //reads the pitch list
+                {
+                    if (pitch[index2].number == $("#PitchSelect").val())
+                    {
+                        var result;
+                        if (direction == 1) 
+                        {
+                            result=pitch[index2].number + instruments[index].offset;
+                        } //apply offset the way it is written
+                        else 
+                        {
+                            result=pitch[index2].number - instruments[index].offset;
+                        }  //apply inverse of offset
+                        for (index3 = 0; index3 < pitch.length; ++index3)
+                            {
+                                if (pitch[index3].number == result) {
+                                    $("#Result").text(pitch[index3].name);
+                            }
+                            }
+
+                    
+                    }}}}}
+
         
  
-        //computer reads instrument range
-        //computer uses pitches above to make a list of pitches within range
-        //computer puts list of pitches in a dropdown on the screen
+//computer recognizes selected transposer
+//computer recognizes selected instrument
+//computer recognizes selected pitch
+//computer recognizes offset for instrument
+//computer applies offset for instrument
+//computer displays transposition
 
 
