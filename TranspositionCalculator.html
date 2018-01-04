@@ -33,14 +33,13 @@
             <div style="text-align: center;">
 
 
-                <select id="TransposerSelect"class="custom-select col-md-5">
+                <select id="TransposerSelect" class="selectpicker custom-select col-md-7" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
                     <option selected>Choose Your Transposition</option>
                     <option value="1">From Concert Pitch to Written Instrument Pitch</option>
                     <option value="2">From Written Instrument Pitch to Concert Pitch</option>
                 </select>
-
-
-                <select id="InstrumentSelect" class="custom-select col-md-5">
+                <br> <div class="margintop"></div>
+                <select id="InstrumentSelect" class="selectpicker custom-select col-md-3" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
                     <option selected>Select an Instrument</option>
                     <option value="Piccolo">Piccolo</option>
                     <option value="English Horn">English Horn</option>
@@ -57,23 +56,31 @@
                     <option value="Glockenspiel">Glockenspiel</option>
                     <option value="Xylophone">Xylophone</option>
                     </select>
-
-                <select id="PitchSelect" class="custom-select col-md-5">
-                            <option selected>Select a Pitch</option>
+                <br> <div class="margintop"></div>
+                <!-- <select id="PitchSelect" class="selectpicker custom-select col-md-3" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
+                            <option selected>Select a Pitch</option> -->
+                <div class="btn-group">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select an Instrument
+                </button>
+                <div id="PitchSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                </div>
+            </div>
 
                 </select>
                 </div>
-
+                <br> <div class="margintop"></div>
                 <div style="text-align: center;">
-                <button id="Transpose" class="btn-lg">
-                    TRANSPOSE!!
+                <button id="Transpose" class="btn-lg" style="text-align: center; font-family: 'Milonga', serif; font-size:240%">
+                    TRANSPOSE!
                 </button>
+
+                <br><div class="margintop"></div>
 
                 </div>
                 <div style="text-align: center;">
                 <p id="Result" style="font-size:200%"></p>
                 </div>
-
 
                   </body>
 

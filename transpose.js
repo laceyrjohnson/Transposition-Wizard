@@ -7,6 +7,7 @@ $(document).ready(function(){
     $("#TransposerSelect").change(function(){PitchList();});
     $("#InstrumentSelect").change(function(){PitchList();});
     $("#Transpose").click(function(){Transpose();});
+    
 });
 
     instruments =   [new Instrument("Concert Pitch",22,96,0), 
@@ -41,15 +42,15 @@ $(document).ready(function(){
   
     function Instrument (name, lowestpitch, highestpitch, offset)
       {
-          this.name = name;
-      this.lowestpitch = lowestpitch;
-      this.highestpitch = highestpitch;
-      this.offset = offset;
+        this.name = name;
+        this.lowestpitch = lowestpitch;
+        this.highestpitch = highestpitch;
+        this.offset = offset;
     }
   
     function Pitch (number, name)
         {
-            this.name = name;
+        this.name = name;
         this.number = number;
     }
 
@@ -67,14 +68,25 @@ $(document).ready(function(){
                         if (pitch[index2].number>=instruments[index].lowestpitch && pitch[index2].number<=instruments[index].highestpitch)//sets the displayable range of pitches
                         {
                             var transposer=0;
-                            if (direction == 2) {transposer= instruments[index].offset}
-                        
-                            $('#PitchSelect').append('<option value="'+ pitch[index2+transposer].number +'" selected="selected">' + pitch [index2+transposer].name +'</option>'); //displays selective pitch list on website
-                           
-                        }}}}}
+                            if (direction == 2) {
+                                transposer= instruments[index].offset;
+                            }
 
+                            $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=30% height=30% src="Images/'+ pitch[index2+transposer].number +'.png"></a>')
+
+                            //$('#PitchSelect').append('<option value="'+ pitch[index2+transposer].number +'">' + ("<img width=5% height=5% src='Images//"+ pitch[index2+transposer].number +".png'>" )+'</option>'); //displays selective pitch list on website
+                           
+                        }
+                    }
+                }
+            }
+                        $(".pitchimage").click(Transpose);
+                    }
+
+        
+/*
     function Transpose ()
-    {
+   {
         var direction = $("#TransposerSelect").val();
         var SelectedInstrumentName = $("#InstrumentSelect").val();
         for (index = 0; index <instruments.length; ++index)//reads through the list of instruments
@@ -97,20 +109,43 @@ $(document).ready(function(){
                         for (index3 = 0; index3 < pitch.length; ++index3)
                             {
                                 if (pitch[index3].number == result) {
-                                    $("#Result").text(pitch[index3].name);
+                                    //$("#Result").text(pitch[index3].name);
+                                   $("#Result").html("<img width=20% height=20% src='Images/"+ pitch[index3].number +".png'>");
                             }
-                            }
+                            }}}}}} 
+*/
 
-                    
-                    }}}}}
+function Transpose(clickevent)
+{
+    var button = clickevent.target;
+    var pitchnumber = $(button).attr("data-pitchnumber");
+    var direction = $("#TransposerSelect").val();
+    var SelectedInstrumentName = $("#InstrumentSelect").val();
+     for (index = 0; index <instruments.length; ++index)//reads through the list of instruments
+     {
+         if (instruments[index].name == SelectedInstrumentName)//selects the instrument that matches html dropdown
+         { 
+             for (index2 = 0; index2 < pitch.length; ++index2) //reads the pitch list
+             {
+                 if (pitch[index2].number == pitchnumber)
+                 {
+                     var result;
+                     if (direction == 1) 
+                     {
+                         result=pitch[index2].number + instruments[index].offset;
+                     } //apply offset the way it is written
+                     else 
+                     {
+                         result=pitch[index2].number - instruments[index].offset;
+                     }  //apply inverse of offset
+                     for (index3 = 0; index3 < pitch.length; ++index3)
+                         {
+                             if (pitch[index3].number == result) {
+                                 //$("#Result").text(pitch[index3].name);
+                                $("#Result").html("<img width=20% height=20% src='Images/"+ pitch[index3].number +".png'>");
+                         }
+                         }}}}}} 
 
-        
- 
-//computer recognizes selected transposer
-//computer recognizes selected instrument
-//computer recognizes selected pitch
-//computer recognizes offset for instrument
-//computer applies offset for instrument
-//computer displays transposition
+    
 
 
