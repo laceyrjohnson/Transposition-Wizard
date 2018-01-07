@@ -4,10 +4,10 @@
 //TransposerSelect and InstrumentSelect
 
 $(document).ready(function(){
-    $("#TransposerSelect").change(function(){PitchList();});
-    $("#InstrumentSelect").change(function(){PitchList();});
-    $("#Transpose").click(function(){Transpose();});
-    
+    $("#TransposerSelect").change(PitchList);
+    $("#InstrumentSelect").click(PitchList);
+    $("#Transpose").click(function(){grandreveal();});
+    $(".instrument").click(PitchList);
 });
 
     instruments =   [new Instrument("Concert Pitch",22,96,0), 
@@ -40,6 +40,7 @@ $(document).ready(function(){
               new Pitch (108,"C9"), new Pitch (109,"C#/Db9"), new Pitch (110,"D9"), new Pitch (111,"D#/Eb9"), new Pitch (112,"E9"), new Pitch (113,"F9"), new Pitch (114,"F#/Gb9"), new Pitch (115,"G9"), new Pitch (116,"G#/Ab9"), new Pitch (117,"A9"), new Pitch (118,"A#/Bb9"), new Pitch (119,"B9"),
               new Pitch (120,"C10"), new Pitch (121,"C#/Db10"), new Pitch (122,"D10"), new Pitch (123,"D#/Eb10"), new Pitch (124,"E10"), new Pitch (125,"F10"), new Pitch (126,"F#/Gb10"), new Pitch (127,"G10"),];
   
+    
     function Instrument (name, lowestpitch, highestpitch, offset)
       {
         this.name = name;
@@ -54,14 +55,17 @@ $(document).ready(function(){
         this.number = number;
     }
 
-    function PitchList ()//generates list of pitches
-    { 
+    function PitchList (clickevent)//generates list of pitches
+    {
+    var button = clickevent.target;
+    var SelectedInstrumentName = $(button).text(); 
         var direction = $("#TransposerSelect").val(); //reads which way to transpose
-        var SelectedInstrumentName = $("#InstrumentSelect").val();//reads which instrument to transpose for
             for (index = 0; index <instruments.length; ++index)//reads through the list of instruments
             {
+
                 if (instruments[index].name == SelectedInstrumentName)//selects the instrument that matches html dropdown
                 {
+                    selectedinstrument= instruments[index];
                     $('#PitchSelect').empty();  
                     for (index2 = 0; index2 < pitch.length; ++index2) //reads the pitch list
                     {
@@ -72,16 +76,13 @@ $(document).ready(function(){
                                 transposer= instruments[index].offset;
                             }
 
-                            $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=30% height=30% src="Images/'+ pitch[index2+transposer].number +'.png"></a>')
-
-                            //$('#PitchSelect').append('<option value="'+ pitch[index2+transposer].number +'">' + ("<img width=5% height=5% src='Images//"+ pitch[index2+transposer].number +".png'>" )+'</option>'); //displays selective pitch list on website
-                           
+                            $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=30% height=30% src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
+                
                         }
                     }
                 }
             }
-                        $(".pitchimage").click(Transpose);
-                    }
+            $(".pitchimage").click(Transpose);}
 
         
 /*
@@ -120,11 +121,12 @@ function Transpose(clickevent)
     var button = clickevent.target;
     var pitchnumber = $(button).attr("data-pitchnumber");
     var direction = $("#TransposerSelect").val();
-    var SelectedInstrumentName = $("#InstrumentSelect").val();
+   SelectedInstrumentName = selectedinstrument.name;
      for (index = 0; index <instruments.length; ++index)//reads through the list of instruments
      {
          if (instruments[index].name == SelectedInstrumentName)//selects the instrument that matches html dropdown
          { 
+             
              for (index2 = 0; index2 < pitch.length; ++index2) //reads the pitch list
              {
                  if (pitch[index2].number == pitchnumber)
@@ -141,11 +143,15 @@ function Transpose(clickevent)
                      for (index3 = 0; index3 < pitch.length; ++index3)
                          {
                              if (pitch[index3].number == result) {
-                                 //$("#Result").text(pitch[index3].name);
-                                $("#Result").html("<img width=20% height=20% src='Images/"+ pitch[index3].number +".png'>");
+                                $("#Input").html('<img width=20% height=20% src="Images/'+ pitch[index2].number+ '.png">');
+                                $("#Result").hide();
+                                $("#Result").html('<img width=20% height=20% src="Images/'+ pitch[index3].number+ '.png">');
                          }
                          }}}}}} 
 
-    
+function grandreveal ()
+{
+    $("#Result").show();
+}
 
 

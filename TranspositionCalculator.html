@@ -38,8 +38,31 @@
                     <option value="1">From Concert Pitch to Written Instrument Pitch</option>
                     <option value="2">From Written Instrument Pitch to Concert Pitch</option>
                 </select>
+                
                 <br> <div class="margintop"></div>
-                <select id="InstrumentSelect" class="selectpicker custom-select col-md-3" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
+                
+                <div class="dropdown"></div>
+                <button class="btn btn-secondary btn-light dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
+                    Select an Instrument
+                </button>
+                <div class= "dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="instrument dropdown-item" href="#">Piccolo</a>
+                    <a class="instrument dropdown-item" href="#">English Horn</a>
+                    <a class="instrument dropdown-item" href="#">Contrabassoon</a>
+                    <a class="instrument dropdown-item" href="#">Clarinet</a>
+                    <a class="instrument dropdown-item" href="#">Bass Clarinet</a>
+                    <a class="instrument dropdown-item" href="#">Alto Sax</a>
+                    <a class="instrument dropdown-item" href="#">Tenor Sax</a>
+                    <a class="instrument dropdown-item" href="#">Bari Sax</a>
+                    <a class="instrument dropdown-item" href="#">Trumpet</a>
+                    <a class="instrument dropdown-item" href="#">F Horn</a>
+                    <a class="instrument dropdown-item" href="#">Baritone T.C.</a>
+                    <a class="instrument dropdown-item" href="#">Double Bass</a>
+                    <a class="instrument dropdown-item" href="#">Glockenspiel</a>
+                    <a class="instrument dropdown-item" href="#">Xylophone</a>
+                </div>
+
+<!--                <select id="InstrumentSelect" class="selectpicker custom-select col-md-3" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
                     <option selected>Select an Instrument</option>
                     <option value="Piccolo">Piccolo</option>
                     <option value="English Horn">English Horn</option>
@@ -56,30 +79,33 @@
                     <option value="Glockenspiel">Glockenspiel</option>
                     <option value="Xylophone">Xylophone</option>
                     </select>
+                </div>
+            -->
                 <br> <div class="margintop"></div>
-                <!-- <select id="PitchSelect" class="selectpicker custom-select col-md-3" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
-                            <option selected>Select a Pitch</option> -->
+
                 <div class="btn-group">
-                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select an Instrument
+                <button class="btn btn-secondary btn-light btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 45px; text-align: center; font-family: 'Lora', serif; font-size:140%">
+                Choose Your Pitch
                 </button>
                 <div id="PitchSelect" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 </div>
-            </div>
-
-                </select>
                 </div>
-                <br> <div class="margintop"></div>
+
                 <div style="text-align: center;">
-                <button id="Transpose" class="btn-lg" style="text-align: center; font-family: 'Milonga', serif; font-size:240%">
+                    <p id="Input" style="font-size:50%"></p>
+                    </div>
+
+                <div style="text-align: center;">
+                <button id="Transpose" class="btn-lg" style="text-align: center; font-family: 'Milonga', serif; font-size:150%">
                     TRANSPOSE!
                 </button>
 
-                <br><div class="margintop"></div>
+                <br>
+
 
                 </div>
                 <div style="text-align: center;">
-                <p id="Result" style="font-size:200%"></p>
+                <p id="Result" style="font-size:50%"></p>
                 </div>
 
                   </body>
