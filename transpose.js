@@ -14,7 +14,7 @@ $(document).ready(function()
     instruments =   [new Instrument("Concert Pitch",22,96,0), 
                     new Instrument("Piccolo",62,96,-12), 
                     new Instrument("English Horn",40,72,7), 
-                    new Instrument("Contrabassoon",34,70,-12), 
+                    new Instrument("Contrabassoon",10,46,12), 
                     new Instrument("Clarinet",38,82,2),
                     new Instrument("Bass Clarinet",25,70,14), 
                     new Instrument("Alto Sax",37,68,9), 
@@ -23,8 +23,8 @@ $(document).ready(function()
                     new Instrument("Trumpet",40,70,2), 
                     new Instrument("F Horn",23,65,7), 
                     new Instrument("Baritone T.C.",28,58,14),
-                    new Instrument("Double Bass",36,72,-12),
-                    new Instrument("Glockenspiel (Bells)",67,96,-24),
+                    new Instrument("Double Bass",12,48,12),
+                    new Instrument("Glockenspiel",67,96,-24),
                     new Instrument("Xylophone",53,96,-12),]
 
     selectedinstrument = null;
@@ -86,7 +86,7 @@ $(document).ready(function()
 
     function PitchList()//generates list of pitches
     {
-        $('#PitchSelect').empty();  
+        $('#PitchSelect').html("");  
         for (index2 = 0; index2 < pitch.length; ++index2) //reads the pitch list
         {
             if (pitch[index2].number>=selectedinstrument.lowestpitch && pitch[index2].number<=selectedinstrument.highestpitch)//sets the displayable range of pitches
@@ -96,8 +96,7 @@ $(document).ready(function()
                     {
                     transposer= selectedinstrument.offset;
                     }
-                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=30% height=30% src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
-                            //$('#pitchtoggle').html('<img width= 100px src="Images/'+ pitch[index2+transposer].number +'.png">');
+                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=90px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
             }
         }
     $(".pitchimage").click(SetPitch);
@@ -106,9 +105,11 @@ $(document).ready(function()
     function SetPitch(clickevent)
     {
         var button = clickevent.target;
+        if($(clickevent.target).is("img"))
+            button = $(clickevent.target).parent();
         var pitchnumber = $(button).attr("data-pitchnumber");
         pitchbutton = pitchnumber;
-        $("#pitchtoggle").html('<img width= 100px src="Images/'+ pitchnumber+ '.png">');
+        $("#pitchtoggle").html('<img width= 110px src="Images/'+ pitchnumber+ '.png">');
     }
 
     function Transpose()
@@ -116,48 +117,18 @@ $(document).ready(function()
         var result;
             if (transposerbutton == "From Concert Pitch to Written Instrument Pitch") 
                 {
-                    result=pitchbutton + selectedinstrument.offset; //apply offset the way it is written
+                    $("#PitchStatement").text("The instrument's written pitch is...")
+                    result=(pitchbutton *1.0)+ selectedinstrument.offset; //apply offset the way it is written
                 }
             else 
                 {
-                    result=pitchbutton - selectedinstrument.offset; //apply inverse of offset
+                    $("#PitchStatement").text("The concert pitch is...")
+                    result=(pitchbutton *1.0) - selectedinstrument.offset; //apply inverse of offset
                 }
                      for (index3 = 0; index3 < pitch.length; ++index3)
                          {
                              if (pitch[index3].number == result) {
-                                $("#Result").html('<img width=8% height=8% src="Images/'+ pitch[index3].number+ '.png">');
+                                $("#Result").html('<img width=120px src="Images/'+ pitch[index3].number+ '.png">');
                          }
                          }
     }
-
-
-/*
-    function Transpose ()
-   {
-        var direction = $("#TransposerSelect").val();
-        var SelectedInstrumentName = $("#InstrumentSelect").val();
-        for (index = 0; index <instruments.length; ++index)//reads through the list of instruments
-        {
-            if (instruments[index].name == SelectedInstrumentName)//selects the instrument that matches html dropdown
-            { 
-                for (index2 = 0; index2 < pitch.length; ++index2) //reads the pitch list
-                {
-                    if (pitch[index2].number == $("#PitchSelect").val())
-                    {
-                        var result;
-                        if (direction == 1) 
-                        {
-                            result=pitch[index2].number + instruments[index].offset;
-                        } //apply offset the way it is written
-                        else 
-                        {
-                            result=pitch[index2].number - instruments[index].offset;
-                        }  //apply inverse of offset
-                        for (index3 = 0; index3 < pitch.length; ++index3)
-                            {
-                                if (pitch[index3].number == result) {
-                                    //$("#Result").text(pitch[index3].name);
-                                   $("#Result").html("<img width=20% height=20% src='Images/"+ pitch[index3].number +".png'>");
-                            }
-                            }}}}}} 
-*/
