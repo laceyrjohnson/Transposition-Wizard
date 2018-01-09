@@ -1,15 +1,9 @@
-
-//ConcertPitchStuff
-//object=thing; properties=characteristics; methods=verbs-thingstheobjectcando
-//TransposerSelect and InstrumentSelect
-
 $(document).ready(function()
 {
-    $("#Transpose").click(Transpose);
     $(".instrument").click(SetInstrument);
     $(".transposer").click(SetTransposeDirection);
-    $("#AssignRandomPitch").click(AssignRandomPitch)
-    $("#CheckMyTransposition").click(CheckMyTransposition)
+    $("#randomButton").click(AssignRandomPitch);
+    $("#CheckMyTransposition").click(CheckMyTransposition);
 });
 
     instruments =   [new Instrument("Concert Pitch",22,96,0), 
@@ -33,6 +27,8 @@ $(document).ready(function()
     transposerbutton = null;
 
     pitchbutton = null;
+
+    solution = null;
 
     //http://www.electronics.dit.ie/staff/tscarff/Music_technology/midi/midi_note_numbers_for_octaves.htm
     pitch = [new Pitch (0,"C0"), new Pitch (1,"C#/Db0"), new Pitch (2,"D0"), new Pitch (3,"D#/Eb0"), new Pitch (4,"E0"), new Pitch (5,"F0"), new Pitch (6,"F#/Gb0"), new Pitch (7,"G0"), new Pitch (8,"G#/Ab0"), new Pitch (9,"A0"), new Pitch (10,"A#/Bb0"), new Pitch (11,"B0"),
@@ -81,9 +77,31 @@ $(document).ready(function()
                 selectedinstrument= instruments[index];
                 $('#instrumenttoggle').text(selectedinstrument.name);
             }
-        }  
-    PitchList();
-    }
+        }
+}
+
+    function AssignRandomPitch()//Trainer function
+    {  
+        var RandomNumber = Math.floor(Math.random() * (selectedinstrument.highestpitch - selectedinstrument.lowestpitch + 1)) + selectedinstrument.lowestpitch;
+            if (transposerbutton == "From Concert Pitch to Written Instrument Pitch") 
+                {//no transposer
+                    $("#PitchStatement2").text("The concert pitch is...");
+                    $("#Question").html('<img width=120px src="Images/'+ RandomNumber+ '.png">'); //apply offset the way it is written
+                    $("#PitchStatement3").text("so the instrument's written pitch is...");
+                    solution = RandomNumber + selectedinstrument.offset
+                }
+            else
+                {//Written pitch to concert pitch -transposer applied to the random pitch
+                    RandomNumber+=selectedinstrument.offset;
+                    $("#PitchStatement2").text("The instrument's written pitch is...");
+                    $("#Question").html('<img width=120px src="Images/'+ RandomNumber+ '.png">');
+                    $("#PitchStatement3").text("so the concert pitch is...");
+                    solution = RandomNumber - selectedinstrument.offset
+                }
+       
+       PitchList();
+    } 
+        
 
     function PitchList()//generates list of pitches
     {
@@ -97,6 +115,39 @@ $(document).ready(function()
                     {
                     transposer= selectedinstrument.offset;
                     }
+                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=90px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
+            }
+        }
+    $(".pitchimage").click(SetPitch);
+    }
+        
+    function SetPitch(clickevent)
+    {
+        var button = clickevent.target;
+            if($(clickevent.target).is("img"))
+            button = $(clickevent.target).parent();
+        var pitchnumber = $(button).attr("data-pitchnumber");
+            pitchbutton = pitchnumber;
+            $("#pitchtoggle").html('<img width= 110px src="Images/'+ pitchnumber+ '.png">');
+    }
+    
+    function CheckMyTransposition()//Trainer function
+    {
+        var WinnersLosers
+        if (solution == pitchbutton)
+        {$("#PitchStatement4").text("Way to go, you awesome winner!");}
+        else 
+        {$("#PitchStatement4").text("You are a disappointment to your ancestors. You shall not be mourned. The correct answer is:");
+        $("#Solution").html('<img width=120px src="Images/'+ solution+ '.png">');
+    }
+    }
+
+/*
+    PitchList();
+    }
+    function PitchList()//generates list of pitches
+    {
+=
                 $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=90px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
             }
         }
@@ -133,3 +184,15 @@ $(document).ready(function()
                          }
                          }
     }
+    
+
+
+    function AssignRandomPitch()//Trainer function
+    {
+
+    }
+
+    function CheckMyTransposition()//Trainer function
+    {
+    }
+    */

@@ -16,4 +16,4 @@ body{padding-left: 1.5%; padding-right: 1.5%}
 .marginmedium{margin-top:10%}
 .marginsmall3{margin-top:2.2%}
 .marginmedium{margin-top:5%}
-
+img{scroll-snap-align:center none;}
