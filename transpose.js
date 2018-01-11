@@ -17,7 +17,7 @@ $(document).ready(function()
                     new Instrument("English Horn",40,72,7), 
                     new Instrument("Contrabassoon",10,46,12), 
                     new Instrument("Clarinet",38,82,2),
-                    new Instrument("Bass Clarinet",25,70,14), 
+                    new Instrument("Bass Clarinet",25,65,14), 
                     new Instrument("Alto Sax",37,68,9), 
                     new Instrument("Tenor Sax",32,63,14), 
                     new Instrument("Bari Sax",25,56,21), 
