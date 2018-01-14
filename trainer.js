@@ -4,6 +4,7 @@ $(document).ready(function()
     $(".transposer").click(SetTransposeDirection);
     $("#randomButton").click(AssignRandomPitch);
     $("#CheckMyTransposition").click(CheckMyTransposition);
+    $("#Reset").click(Reset)
 });
 
     instruments =   [new Instrument("Concert Pitch",22,96,0), 
@@ -86,7 +87,7 @@ $(document).ready(function()
             if (transposerbutton == "From Concert Pitch to Written Instrument Pitch") 
                 {//no transposer
                     $("#PitchStatement2").text("The concert pitch is...");
-                    $("#Question").html('<img width=120px src="Images/'+ RandomNumber+ '.png">'); //apply offset the way it is written
+                    $("#Question").html('<img width=85px src="Images/'+ RandomNumber+ '.png">'); //apply offset the way it is written
                     $("#PitchStatement3").text("so the instrument's written pitch is...");
                     solution = RandomNumber + selectedinstrument.offset
                 }
@@ -94,7 +95,7 @@ $(document).ready(function()
                 {//Written pitch to concert pitch -transposer applied to the random pitch
                     RandomNumber+=selectedinstrument.offset;
                     $("#PitchStatement2").text("The instrument's written pitch is...");
-                    $("#Question").html('<img width=120px src="Images/'+ RandomNumber+ '.png">');
+                    $("#Question").html('<img width=85px src="Images/'+ RandomNumber+ '.png">');
                     $("#PitchStatement3").text("so the concert pitch is...");
                     solution = RandomNumber - selectedinstrument.offset
                 }
@@ -115,7 +116,7 @@ $(document).ready(function()
                     {
                     transposer= selectedinstrument.offset;
                     }
-                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=90px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
+                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=85px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
             }
         }
     $(".pitchimage").click(SetPitch);
@@ -128,18 +129,23 @@ $(document).ready(function()
             button = $(clickevent.target).parent();
         var pitchnumber = $(button).attr("data-pitchnumber");
             pitchbutton = pitchnumber;
-            $("#pitchtoggle").html('<img width= 110px src="Images/'+ pitchnumber+ '.png">');
+            $("#pitchtoggle").html('<img width= 85px src="Images/'+ pitchnumber+ '.png">');
     }
     
     function CheckMyTransposition()//Trainer function
     {
         var WinnersLosers
         if (solution == pitchbutton)
-        {$("#PitchStatement4").text("Way to go, you awesome winner!");}
+        {$("#PitchStatement4").text("Way to go, you awesome winner!");
+        $("#Solution").html('<iframe src="https://giphy.com/embed/xNBcChLQt7s9a" height="250" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/win-xNBcChLQt7s9a"></a></p>');}        
         else 
         {$("#PitchStatement4").text("You are a disappointment to your ancestors. You shall not be mourned. The correct answer is:");
-        $("#Solution").html('<img width=120px src="Images/'+ solution+ '.png">');
+        $("#Solution").html('<img width=85px src="Images/'+ solution+ '.png">');}
     }
+
+    function Reset()
+    {
+        window.location.reload(true);
     }
 
 /*

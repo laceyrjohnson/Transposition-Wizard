@@ -8,8 +8,8 @@ $(document).ready(function()
     $("#Transpose").click(Transpose);
     $(".instrument").click(SetInstrument);
     $(".transposer").click(SetTransposeDirection);
-    $("#AssignRandomPitch").click(AssignRandomPitch)
-    $("#CheckMyTransposition").click(CheckMyTransposition)
+    $("#Reset").click(Reset)
+
 });
 
     instruments =   [new Instrument("Concert Pitch",22,96,0), 
@@ -97,7 +97,7 @@ $(document).ready(function()
                     {
                     transposer= selectedinstrument.offset;
                     }
-                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=90px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
+                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=85px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
             }
         }
     $(".pitchimage").click(SetPitch);
@@ -110,7 +110,7 @@ $(document).ready(function()
             button = $(clickevent.target).parent();
         var pitchnumber = $(button).attr("data-pitchnumber");
         pitchbutton = pitchnumber;
-        $("#pitchtoggle").html('<img width= 110px src="Images/'+ pitchnumber+ '.png">');
+        $("#pitchtoggle").html('<img width= 85px src="Images/'+ pitchnumber+ '.png">');
     }
 
     function Transpose()
@@ -129,7 +129,12 @@ $(document).ready(function()
                      for (index3 = 0; index3 < pitch.length; ++index3)
                          {
                              if (pitch[index3].number == result) {
-                                $("#Result").html('<img width=120px src="Images/'+ pitch[index3].number+ '.png">');
+                                $("#Result").html('<img width=85px src="Images/'+ pitch[index3].number+ '.png">');
                          }
                          }
+    }
+
+    function Reset()
+    {
+        window.location.reload(true);
     }
