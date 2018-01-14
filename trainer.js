@@ -112,9 +112,9 @@ $(document).ready(function()
             if (pitch[index2].number>=selectedinstrument.lowestpitch && pitch[index2].number<=selectedinstrument.highestpitch)//sets the displayable range of pitches
             {
                 var transposer= 0;
-                if (transposerbutton == "From Written Instrument Pitch to Concert Pitch") 
+                if (transposerbutton != "From Written Instrument Pitch to Concert Pitch") 
                     {
-                    transposer= selectedinstrument.offset;
+                    transposer = selectedinstrument.offset;
                     }
                 $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=85px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
             }
@@ -147,58 +147,3 @@ $(document).ready(function()
     {
         window.location.reload(true);
     }
-
-/*
-    PitchList();
-    }
-    function PitchList()//generates list of pitches
-    {
-=
-                $('#PitchSelect').append('<a class="pitchimage dropdown-item" data-pitchnumber = "'+pitch[index2+transposer].number+'" href="#"><img width=90px src="Images/'+ pitch[index2+transposer].number +'.png"></a>');
-            }
-        }
-    $(".pitchimage").click(SetPitch);
-    }
-
-    function SetPitch(clickevent)
-    {
-        var button = clickevent.target;
-        if($(clickevent.target).is("img"))
-            button = $(clickevent.target).parent();
-        var pitchnumber = $(button).attr("data-pitchnumber");
-        pitchbutton = pitchnumber;
-        $("#pitchtoggle").html('<img width= 110px src="Images/'+ pitchnumber+ '.png">');
-    }
-
-    function Transpose()
-    {
-        var result;
-            if (transposerbutton == "From Concert Pitch to Written Instrument Pitch") 
-                {
-                    $("#PitchStatement").text("The instrument's written pitch is...")
-                    result=(pitchbutton *1.0)+ selectedinstrument.offset; //apply offset the way it is written
-                }
-            else 
-                {
-                    $("#PitchStatement").text("The concert pitch is...")
-                    result=(pitchbutton *1.0) - selectedinstrument.offset; //apply inverse of offset
-                }
-                     for (index3 = 0; index3 < pitch.length; ++index3)
-                         {
-                             if (pitch[index3].number == result) {
-                                $("#Result").html('<img width=120px src="Images/'+ pitch[index3].number+ '.png">');
-                         }
-                         }
-    }
-    
-
-
-    function AssignRandomPitch()//Trainer function
-    {
-
-    }
-
-    function CheckMyTransposition()//Trainer function
-    {
-    }
-    */
