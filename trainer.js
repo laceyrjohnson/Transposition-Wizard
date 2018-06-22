@@ -137,7 +137,7 @@ $(document).ready(function()
         var WinnersLosers
         if (solution == pitchbutton)
         {$("#PitchStatement4").text("Way to go, you awesome winner!");
-        $("#Solution").html('<iframe src="https://giphy.com/embed/xNBcChLQt7s9a" height="250" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/win-xNBcChLQt7s9a"></a></p>');}        
+        $("#Solution").html('<iframe src="https://giphy.com/embed/3OwXbwGBV9UsldA0FF" height="250" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/win-xNBcChLQt7s9a"></a></p>');}        
         else 
         {$("#PitchStatement4").text("You are a disappointment to your ancestors. You shall not be mourned. The correct answer is:");
         $("#Solution").html('<img width=85px src="Images/'+ solution+ '.png">');}
