@@ -140,7 +140,7 @@ $(document).ready(function()
         $("#Solution").html('<iframe src="https://giphy.com/embed/3OwXbwGBV9UsldA0FF" height="250" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/win-xNBcChLQt7s9a"></a></p>');}        
         else 
         {$("#PitchStatement4").text("You are a disappointment to your ancestors. You shall not be mourned. The correct answer is:");
-        $("#Solution").html('<img width=85px src="Images/'+ solution+ '.png">');}
+        $("#Solution").html('<img width=85px src="Images/'+ solution+ '.png"> <br> <br> <iframe src="https://giphy.com/embed/1sYzXXIdqLJGo" width="360" height="187" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/harry-potter-hermione-granger-1sYzXXIdqLJGo"></a></p>');}
     }
 
     function Reset()
