@@ -120,11 +120,13 @@ $(document).ready(function()
                 {
                     $("#PitchStatement").text("The instrument's written pitch is...")
                     result=(pitchbutton *1.0)+ selectedinstrument.offset; //apply offset the way it is written
+                    $("#Answer").html('<iframe src="https://giphy.com/embed/zIwIWQx12YNEI" width="432" height="243" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/zIwIWQx12YNEI"></a></p>');  
                 }
             else 
                 {
                     $("#PitchStatement").text("The concert pitch is...")
                     result=(pitchbutton *1.0) - selectedinstrument.offset; //apply inverse of offset
+                    $("#Answer").html('<iframe src="https://giphy.com/embed/zIwIWQx12YNEI" width="432" height="243" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/zIwIWQx12YNEI"></a></p>');                      
                 }
                      for (index3 = 0; index3 < pitch.length; ++index3)
                          {
